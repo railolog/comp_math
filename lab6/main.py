@@ -1,4 +1,4 @@
-from equation import Equation
+from equation import *
 
 equations = [
     Equation(lambda x, y: y + (1 + x) * y**2, 'y + (1 + x)y^2')
@@ -60,6 +60,10 @@ def readStarters():
 def run():
     equation = chooseEquation()
     y0, x0, xn, h, eps = readStarters()
+
+    concreteEquation = ConcreteEquation(equation, y0, x0, xn, h, eps)
+
+    print(concreteEquation.simpleIntegrals())
 
 
 if __name__ == '__main__':
