@@ -1,7 +1,15 @@
+from decimal import Decimal
+import math
+
 from equation import *
 
 equations = [
-    Equation(lambda x, y: y + (1 + x) * y**2, 'y + (1 + x)y^2')
+    Equation(
+        lambda x, y: y + (x + 1) * y**2,
+        lambda x, c: -(math.exp(x) / (c + math.exp(x) * x)),
+        lambda x, y: -(math.exp(x) / y + math.exp(x) * x),
+        'y + (1 + x)y^2'
+    )
 ]
 
 
@@ -61,9 +69,14 @@ def run():
     equation = chooseEquation()
     y0, x0, xn, h, eps = readStarters()
 
+    if h > xn - x0:
+        exit(10)
+
     concreteEquation = ConcreteEquation(equation, y0, x0, xn, h, eps)
 
-    print(concreteEquation.simpleIntegrals())
+    concreteEquation.rungeRuledEuler()
+    concreteEquation.rungeRuledRunge()
+    print(concreteEquation.miln())
 
 
 if __name__ == '__main__':
