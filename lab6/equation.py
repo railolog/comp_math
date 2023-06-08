@@ -1,5 +1,7 @@
 import math
 
+import matplotlib.pyplot as plt
+import numpy
 from prettytable import PrettyTable
 
 
@@ -200,6 +202,17 @@ class ConcreteEquation:
         # print(len(self.eulerY), len(self.rungeY), len(X), len(Y))
         l = min([len(self.eulerY), len(self.rungeY), len(X), len(Y)])
 
+        plt.scatter(X, self.eulerY, c='b', s=60)
+        plt.scatter(X, self.rungeY, c='y', s=40)
+        plt.scatter(X, Y, c='r', s=10)
+
+        x = numpy.linspace(X[0] - 0.1* abs(X[0]), X[-1] + 0.1 * abs(X[-1]), 100)
+        y = [self.I(i, self.C) for i in x]
+
+        plt.plot(x, y)
+
+        plt.show()
+
         table = PrettyTable()
         table.add_column('xi', [round(i, 3) for i in X][:l])
         table.add_column('Эйлера', self.eulerY[:l])
@@ -207,4 +220,4 @@ class ConcreteEquation:
         table.add_column('Милн', Y[:l])
         table.add_column('Точное решение', [self.I(i, self.C) for i in X][:l])
 
-        return table, X, self.eulerY, self.rungeY, Y
+        return table

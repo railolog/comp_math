@@ -9,6 +9,24 @@ equations = [
         lambda x, c: -(math.exp(x) / (c + math.exp(x) * x)),
         lambda x, y: -(math.exp(x) / y + math.exp(x) * x),
         'y + (1 + x)y^2'
+    ),
+    Equation(
+        lambda x, y: x + y,
+        lambda x, c: c * math.exp(x) - x - 1,
+        lambda x, y: (y + x + 1) / math.exp(x),
+        'y + x'
+    ),
+    Equation(
+        lambda x, y: x**3,
+        lambda x, c: c + x**4 / 4,
+        lambda x, y: y - x**4 / 4,
+        'x^3'
+    ),
+    Equation(
+        lambda x, y: math.sin(x) - y,
+        lambda x, c: c * math.exp(-x) + math.sin(x)/2 - math.cos(x)/2,
+        lambda x, y: (y - math.sin(x)/2 + math.cos(x)/2)/math.exp(-x),
+        'sin(x) - y'
     )
 ]
 
