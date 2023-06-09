@@ -5,12 +5,6 @@ from equation import *
 
 equations = [
     Equation(
-        lambda x, y: y + (x + 1) * y**2,
-        lambda x, c: -(math.exp(x) / (c + math.exp(x) * x)),
-        lambda x, y: -(math.exp(x) / y + math.exp(x) * x),
-        'y + (1 + x)y^2'
-    ),
-    Equation(
         lambda x, y: x + y,
         lambda x, c: c * math.exp(x) - x - 1,
         lambda x, y: (y + x + 1) / math.exp(x),
